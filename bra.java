@@ -11,7 +11,7 @@ import single.single;
 //import Functions2.Functions;
 //import test.test;
 
-public class main{
+public class bra{
 
 
 	
@@ -50,7 +50,7 @@ public class main{
 	
 	test obj =new test();
 
-	while(mode==1)
+	while(mode==0)
 	{
 	obj.main(args);
 	}

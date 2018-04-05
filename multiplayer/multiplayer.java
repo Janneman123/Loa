@@ -1,3 +1,5 @@
+package multiplayer;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
@@ -213,17 +215,27 @@ public class multiplayer
 	//System.out.println(b);
 
 
-					String endposition="temp1";
-					String requiredposition="temp2";
-					String startingposition="temp3";
-					String piece ="temp4";
-					int startindex=-1;
-					int endindex=-1;
-					int jumps=0;
+					String endposition;
+					String requiredposition;
+					String startingposition;
+					String piece;
+					int startindex;
+					int endindex;
+					int jumps;
 					String move;
-					Boolean legalmove = false;
+					Boolean legalmove;
 
 
+							while(!(bunits==size||wunits==size)){
+					 endposition="temp1";
+					 requiredposition="temp2";
+					 startingposition="temp3";
+					 piece ="temp4";
+					 startindex=-1;
+					 endindex=-1;
+					 jumps=0;
+					 move="temp5";
+					 legalmove = false;
 
 							while(!endposition.equals(requiredposition) || legalmove==false){	
 							System.out.println("");
@@ -288,9 +300,10 @@ public class multiplayer
 
 
 
-						if(board2[endindex].equals(".") && !board2[startindex].equals(".") && requiredposition.equals(endposition) && jumps!=0
+						if(board2[endindex].equals(".") && board2[startindex].equals(colour) && requiredposition.equals(endposition) && jumps!=0
 							&& board2[startindex].equals(colour)){	
 							for(int i=0;i<board2.length;i++){
+								legalmove=true;
 
 								if(i==startindex){board2[i]=".";}
 															}				
@@ -327,10 +340,12 @@ public class multiplayer
 
 					  if(bunits==size||wunits==size){System.out.println("WINNER:"+colour);
 					  								System.exit(0);}
+					  							}
 
 
 						if(colour.equals("B")){colour="W";} else {colour="B";}
 					}
+					
 
 	//connection=Networking.connect("105.186.160.171");
 	//String command=Networking.write("Hello");

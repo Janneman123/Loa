@@ -6,6 +6,7 @@ import java.util.List;
 
 import test.test;
 import single.single;
+import multiplayer.multiplayer;
 
 
 //import Functions2.Functions;
@@ -48,19 +49,26 @@ public class Loa{
 		int size =arguments[0];
 		int mode =arguments[1];
 	
-	test obj =new test();
+	test test =new test();
 
 	while(mode==0)
 	{
-	obj.main(args);
+	test.main(args);
 	}
 	
 
-	single obj2 =new single();
+	single single =new single();
 
 		while(mode==1)
 	{
-	obj2.main(args);
+	single.main(args);
+	}
+
+		multiplayer multiplayer =new multiplayer();
+
+		while(mode==2)
+	{
+	multiplayer.main(args);
 	}
 	
 

@@ -58,7 +58,7 @@ public static int[] PCNumberofJumps(String[][] index3,String[][] board3,
 			for(int j=startcolumnindex;j>=0;j--)
 			{
 				if(j==0){break;}
-				//j=j-1;
+				j=j-1;
 				if(board3[startrowindex][j]!="."){leftdirectioncount+=1;}
 			}
 
