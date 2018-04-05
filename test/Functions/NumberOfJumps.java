@@ -33,7 +33,7 @@ public static int NumberOfJumps(String[][] index3,String[][] board3,
 
 
 
-		for(int i=0;i<size;i++)
+				for(int i=0;i<size;i++)
 		{
 			for(int j=0;j<size;j++)
 			{
@@ -78,8 +78,8 @@ public static int NumberOfJumps(String[][] index3,String[][] board3,
 					{
 						if(j==size-1){break;}
 						if(i==size-1){break;}
-						i=i+1;
-						j=j+1;
+						//i=i-1;
+						//j=j-1;
 						if((board3[i][j]!=".") && index3[i][j]!=startingposition){downrightdirectioncount+=1;}
 						if(j==size-1){break;}
 						if(j!=size-1){j+=1;}
@@ -92,7 +92,7 @@ public static int NumberOfJumps(String[][] index3,String[][] board3,
 			
 					
 					{	if(j==0){break;}
-						j-=1;
+						//j-=1;
 						if((board3[i][j]!=".") && index3[i][j]!=startingposition){downleftdirectioncount+=1;}
 						if(j==0){break;}	
 						if(j!=0){j-=1;}	
@@ -118,7 +118,7 @@ public static int NumberOfJumps(String[][] index3,String[][] board3,
 						if(i==0){break;}
 						if(j==size-1){break;}
 						//i=i-1;
-							j=j+1;
+							//j=j+1;
 						if((board3[i][j]!=".") && index3[i][j]!=startingposition){uprightdirectioncount+=1;}
 						//System.out.println(board3[i][j]);
 						//System.out.print(i + " "+ j);
@@ -127,15 +127,16 @@ public static int NumberOfJumps(String[][] index3,String[][] board3,
 
 					}
 
+
+
 			number_of_moves[0]=leftdirectioncount;
 			number_of_moves[1]=rightdirectioncount;
-			number_of_moves[2]=uprightdirectioncount;
+			number_of_moves[2]=updirectioncount;
 			number_of_moves[3]=downdirectioncount;
 			number_of_moves[4]=downleftdirectioncount;
 			number_of_moves[5]=downrightdirectioncount;
 			number_of_moves[6]=upleftdirectioncount;
 			number_of_moves[7]=uprightdirectioncount;
-
 		
 
 			for(int i=0;i<direction_of_movement.length;i++)

@@ -86,7 +86,7 @@ public class test{
 			{
 				for(int j=0;j<size;j++)
 				{
-					if((j==0||j==size-1)) //&& !(j==0||j==size-1))
+					if((j==0||j==size-1)) 
 						{
 							if(i==0||i==size-1){board[i][j]=".";}
 							else if(i>0 && i<size-1){board[i][j]="W";}
@@ -111,7 +111,7 @@ public class test{
 				System.out.println("");
 				for(int j=0;j<size;j++)
 				{
-					//System.out.print(board[i][j]+" ");
+				
 					arrayList.add(board[i][j]);
 				}
 			}
@@ -152,7 +152,7 @@ public class test{
 			{
 				for(int j=n*size;j<(n+1)*size;j++)
 				{
-					//System.out.println(index[3-n+(j-n*4)*4]);
+		
 					index2[j]=index[size-1-n+(j-n*size)*size];
 				}
 			}
@@ -280,17 +280,13 @@ public class test{
 
 					System.out.println("");
 
-					//System.out.println(Units("B",index3,board3,size));
-					//continue;
 
-					//String[][] aux2=Units("B",index3,board3,size);
 					Functions.Units Units = new Functions.Units();
 
 					 bunits=Units.Units("B",index3,board3,board2,size);
 					 wunits=Units.Units("B",index3,board3,board2,size);
 
-					//System.out.println(bunits);
-					//System.out.println(requiredposition);
+					
 
 
 
@@ -298,13 +294,7 @@ public class test{
 					}
 				System.out.println("WINNER:"+colour);
 
-				//String dir=PossibleMoves(index3,board3,size,"bra",1,"bra","bra",direction_of_movement);
-				//System.out.println(dir);
-		
-
-				//String dir=PossibleMoves(index3,board3,size,"bra",1,"bra","bra",direction_of_movement);
-				//System.out.println(dir);
-
+			
 	 	
 	  }
 }
