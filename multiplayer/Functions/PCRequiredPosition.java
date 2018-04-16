@@ -49,11 +49,11 @@ public static String PCRequiredPosition(String[][] index3,String[][] board3,int 
 		}
 
 
-		if(direction.equals("upleft"))
+        if(direction.equals("upleft"))
 
 		{
-			//increment=Math.pow(((Math.pow(jumps,2))/2),0.5);
-			requiredposition=index3[startrowindex-jumps][startcolumnindex-jumps];
+
+			requiredposition=index3[startrowindex-jumps][startcolumnindex-jumps+1];
 		}
 
 				if(direction.equals("downright"))

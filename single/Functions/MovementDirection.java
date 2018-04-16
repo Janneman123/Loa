@@ -53,7 +53,7 @@ public static String MovementDirection(String[] direction_of_movement, String[][
 			direction ="upright";
 		}
 
-		 if (endrowindex>startrowindex && endcolumnindex<startcolumnindex)
+		 if (endrowindex<startrowindex && endcolumnindex<startcolumnindex)
 		{
 			direction ="upleft";
 		}

@@ -204,70 +204,76 @@ public class multiplayer
 	String clientip;
 	if(host.equals("B")){hostip=bip;} else {hostip=wip;}
 	if(client.equals("B")){clientip=bip;} else {clientip=wip;}
-
-
-
-
-
-	
-
-	//int b=Networking.connect(wip);
-	//System.out.println(b);
-
-
-					String endposition;
-					String requiredposition;
-					String startingposition;
-					String piece;
-					int startindex;
-					int endindex;
-					int jumps;
-					String move;
-					Boolean legalmove;
-
-
-							while(!(bunits==size||wunits==size)){
-					 endposition="temp1";
-					 requiredposition="temp2";
-					 startingposition="temp3";
-					 piece ="temp4";
-					 startindex=-1;
-					 endindex=-1;
-					 jumps=0;
-					 move="temp5";
-					 legalmove = false;
-
-							while(!endposition.equals(requiredposition) || legalmove==false){	
-							System.out.println("");
-
-
-							System.out.println("Make your move, " + colour);
-
-							if(!colour.equals(host)){System.out.println("Waiting for Client to move");}
-							String[] temparray = new String[1];
-							temparray[0]=hostip;
+        
+    String endposition;
+    String requiredposition;
+    String startingposition;
+    String piece;
+    int startindex;
+    int endindex;
+    int jumps;
+    String move;
+    Boolean legalmove;
+        
+    while(!(bunits==size && wunits==size))
+        {
+            endposition="temp1";
+            requiredposition="temp2";
+            startingposition="temp3";
+            piece ="temp4";
+            startindex=-1;
+            endindex=-1;
+            jumps=0;
+            move="temp5";
+            legalmove = false;
+        
+            while(!endposition.equals(requiredposition) || legalmove==false)
+                {
+                    System.out.println("");
+                    System.out.println("Make your move, " + colour);
+                
+                    if(!colour.equals(host))
+                        {
+                            System.out.println("Waiting for Client to move");
+                        }
+				    String[] temparray = new String[1];
+				    temparray[0]=hostip;
 							
-							if(host.equals(colour)){move= textscanner.nextLine();} else {move=Client_move_1.Client_move_1(hostip);}
-							if(move.equals("QUIT")){System.exit(0);}
+				    if(host.equals(colour))
+                            {
+                                move= textscanner.nextLine();
+                            }
+                    else
+                            {
+                                move=Client_move_1.Client_move_1(hostip);
+                                System.out.println(move);
+                            }
+                
+				    if(move.equals("QUIT"))
+                            {
+                                System.exit(0);
+                            }
 
-							if(move.equals("PASS")){
-								if(colour.equals("B")){colour="W";} 
-								else {colour="B";}}
-
-
-						 startingposition=move.substring(0,2);
+				    if(move.equals("PASS"))
+                                {
+								    if(colour.equals("B"))
+                                        {
+                                            colour="W";
+                                        } 
+				                    else {colour="B";}
+                                }
+                            
+                         startingposition=move.substring(0,2);
 						 endposition=move.substring(2,4);
-
-						//System.out.println(startingposition);
 
 						Functions.Piece Piece =new Functions.Piece();
 
 						piece =Piece.Piece(board2,index2,startingposition);
 
 						Functions.Index Index = new Functions.Index();
-
-						 startindex = Index.Index(board2,index2,startingposition);
-						 endindex = Index.Index(board2,index2,endposition);
+                
+                        startindex = Index.Index(board2,index2,startingposition);
+                        endindex = Index.Index(board2,index2,endposition);
 
 
 
@@ -278,42 +284,47 @@ public class multiplayer
 						Functions.MovementDirection MovementDirection = new Functions.MovementDirection();
 
 						direction=MovementDirection.MovementDirection(direction_of_movement,index3,startingposition,endposition,size);
-						System.out.println("Direction: "+ direction);
-						//System.out.println(direction);
-
-						//Functions.NumberOfJumps NumberOfJumps = new Functions.NumberOfJumps();
-
-						 jumps=NumberOfJumps.NumberOfJumps(index3,board3,startingposition,endposition,size,direction_of_movement,direction);
+                        jumps=NumberOfJumps.NumberOfJumps(index3,board3,startingposition,endposition,size,direction_of_movement,direction);
 
 						int jumps_delta =NumberOfJumps.NumberOfJumps(index3,board3,endposition,endposition,size,direction_of_movement,direction);
-						System.out.println("Jumps: "+jumps);
 
 						Functions.SupposedNumberofJumps SupposedNumberofJumps = new Functions.SupposedNumberofJumps();
 						boolean correct_number_of_jumps=SupposedNumberofJumps.SupposedNumberofJumps(direction_of_movement,jumps,size,direction,index3,board3,startingposition,endposition,jumps_delta);
 
 						Functions.RequiredPosition RequiredPosition = new Functions.RequiredPosition();
 						 requiredposition=RequiredPosition.RequiredPosition(index3,board3,size,direction,jumps,startingposition,endposition);
-						 if(!endposition.equals(requiredposition)){System.out.println("ERROR:Illegal Move");}
-						
-						System.out.println("Required: "+ requiredposition);
+                
+						 if(!endposition.equals(requiredposition))
+                            {
+                             System.out.println("ERROR:Illegal Move");
+                            }
 					
 
 
 
 						if(board2[endindex].equals(".") && board2[startindex].equals(colour) && requiredposition.equals(endposition) && jumps!=0
-							&& board2[startindex].equals(colour)){	
-							for(int i=0;i<board2.length;i++){
-								legalmove=true;
+							&& board2[startindex].equals(colour))
+                            {	
+                                for(int i=0;i<board2.length;i++)
+                                    {
+                                        legalmove=true;
 
-								if(i==startindex){board2[i]=".";}
-															}				
-	//
-							for(int i=0;i<board2.length;i++){
-								if(i==endindex){board2[i]=piece;}
-								}}
-
-							else{System.out.println("ERROR: Illegal Move");
-								  legalmove=false;}
+                                        if(i==startindex)
+                                            {
+                                                board2[i]=".";
+                                            }
+                                    }				
+        //
+                                for(int i=0;i<board2.length;i++){
+                                    if(i==endindex){board2[i]=piece;}
+                                    }
+                            }
+                        
+                        else
+                            {
+                                System.out.println("ERROR: Illegal Move");
+                                legalmove=false;
+                            }
 
 						board3=ReIndex.ReIndex(board2,size);
 						index3=ReIndex.ReIndex(index2,size);
@@ -322,33 +333,43 @@ public class multiplayer
 
 						Functions.Units Units = new Functions.Units();
 
-					 bunits=Units.Units("B",index3,board3,board2,size);
-					 wunits=Units.Units("W",index3,board3,board2,size);
+                         bunits=Units.Units("B",index3,board3,board2,size);
+                         wunits=Units.Units("W",index3,board3,board2,size);
 
-					 for(int i=0;i<size+1;i++)
+					   for(int i=0;i<size+1;i++)
 									
 						{
 							System.out.println("");
-						for(int j=0;j<size+1;j++)
-							{
-						System.out.print(board4[i][j]+" ");
-							}
+                            for(int j=0;j<size+1;j++)
+                                {
+                                  System.out.print(board4[i][j]+" ");
+                                }
 						}
 
 						System.out.println("");
 
 
-					  if(bunits==size||wunits==size){System.out.println("WINNER:"+colour);
-					  								System.exit(0);}
-					  							}
+                        if(bunits==size||wunits==size)
+                            {
+                                if(bunits==size && wunits==size)
+                                {
+                                System.out.println("Draw");
+                                System.exit(0);
+                                }
+                            
+                                else 
+                                {
+                                System.out.println("WINNER:"+colour);
+                                System.exit(0);
+                                }
+                            }
+				}
 
 
 						if(colour.equals("B")){colour="W";} else {colour="B";}
 					}
 					
 
-	//connection=Networking.connect("105.186.160.171");
-	//String command=Networking.write("Hello");
 
 
 

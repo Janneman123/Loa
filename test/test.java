@@ -200,12 +200,18 @@ public class test{
 			String colour="B";
 
 
-			while(bunits!=4||wunits!=4){
+			while(bunits!=size && wunits!=size){
+                
+                board3=ReIndex.ReIndex(board2,size);
+				index3=ReIndex.ReIndex(index2,size);
+
 					
 			
-					System.out.println("Make your move, " + colour);
+					//System.out.println("Make your move, " + colour);
 					String move= textscanner.nextLine();
-					if(move.equals("QUIT")){System.exit(0);}
+					if(move.equals("QUIT")){
+                        System.out.println("player quit");
+                        System.exit(0);}
 					if(move.equals("PASS")){
 						if(colour.equals("B")){colour="W";} 
 						else {colour="B";}
@@ -246,6 +252,14 @@ public class test{
 
 					Functions.RequiredPosition RequiredPosition = new Functions.RequiredPosition();
 					String requiredposition=RequiredPosition.RequiredPosition(index3,board3,size,direction,jumps,startingposition,endposition);
+                
+       
+                   
+                    System.out.println("B Units`: "+bunits + "WUnits: "+wunits);
+                    System.out.println(startingposition);
+                    System.out.println(requiredposition);
+                    System.out.println(direction);
+                    System.out.println(jumps);
 
 
 
@@ -284,15 +298,27 @@ public class test{
 					Functions.Units Units = new Functions.Units();
 
 					 bunits=Units.Units("B",index3,board3,board2,size);
-					 wunits=Units.Units("B",index3,board3,board2,size);
+					 wunits=Units.Units("W",index3,board3,board2,size);
+ 
 
 					
 
 
 
-					if(colour.equals("B") && jumps!=0 && (bunits!=4||wunits!=4) ){colour="W";} else {colour="B";}
+					if(colour.equals("B") && jumps!=0 && (bunits!=size && wunits!=size) ){colour="W";} else {colour="B";}
+                    
 					}
-				System.out.println("WINNER:"+colour);
+        
+                if(bunits==size && wunits==size){
+                    System.out.println("DRAW");
+                    System.exit(0);
+                }
+                else
+                {
+                    
+                System.out.println("WINNER:"+colour);
+                System.exit(0);
+                }
 
 			
 	 	

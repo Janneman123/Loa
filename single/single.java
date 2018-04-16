@@ -25,468 +25,424 @@ import Functions.PCRequiredPosition;
 
 
 
-public class single{
+public class single
+    {
 
-	public static void main(String[] args){
+        public static void main(String[] args)
+        {
 
-		Scanner scanner =new Scanner(System.in);
-		Scanner textscanner=new Scanner(System.in);
+            Scanner scanner =new Scanner(System.in);
+            Scanner textscanner=new Scanner(System.in);
 
-		Functions.NumberOfJumps NumberOfJumps =new Functions.NumberOfJumps();
+            Functions.NumberOfJumps NumberOfJumps =new Functions.NumberOfJumps();
 
-		String direction="Not determined yet";
-		String pcrequiredposition ="Undetermined";
-		boolean pcendboardpositioncheck=false;
-		String pcpiece ="Undetermined";
+            String direction="Not determined yet";
+            String pcrequiredposition ="Undetermined";
+            boolean pcendboardpositioncheck=false;
+            String pcpiece ="Undetermined";
 
-		 
 
-		int [] arguments = new int[args.length];
 
+            int [] arguments = new int[args.length];
 
-		for (int i=0;i<args.length;i++)
-		 		{
-		 			arguments[i]=Integer.parseInt(args[i]);
-		 		} 
 
-		 	//check for arguments
-		if(arguments.length<2)
-				{System.out.println("ERROR : too few arguments");
-				System.exit(0);
-				}
+            for (int i=0;i<args.length;i++)
+                    {
+                        arguments[i]=Integer.parseInt(args[i]);
+                    } 
 
-			//check board size
-		if(arguments[0]<4|| arguments[0]>16)
-			{
-				System.out.println("ERROR: illegal size");
-				System.exit(0);
-			}
+                //check for arguments
+            if(arguments.length<2)
+                    {System.out.println("ERROR : too few arguments");
+                    System.exit(0);
+                    }
 
-		if(arguments[1]>=3 || arguments[1]<0)
-			{
-				System.out.println("ERROR: illegal mode");
-				System.exit(0);
-			}
+                //check board size
+            if(arguments[0]<4|| arguments[0]>16)
+                {
+                    System.out.println("ERROR: illegal size");
+                    System.exit(0);
+                }
 
-		int size= arguments[0];
-		int mode = arguments[1];
+            if(arguments[1]>=3 || arguments[1]<0)
+                {
+                    System.out.println("ERROR: illegal mode");
+                    System.exit(0);
+                }
 
-		String[][] board3 = new String[size][size];
-		String[][] index3 = new String[size][size];
-		String board4[][] = new String[size+2][size+2];
+            int size= arguments[0];
+            int mode = arguments[1];
 
-		int bunits=size/2;
-		int wunits=size/2;
+            String[][] board3 = new String[size][size];
+            String[][] index3 = new String[size][size];
+            String board4[][] = new String[size+2][size+2];
 
-		String[][] boardlabels;
-		String[][] topbottomlables;
+            int bunits=size/2;
+            int wunits=size/2;
 
+            String[][] boardlabels;
+            String[][] topbottomlables;
 
-		char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-		char[] alphabet2 = {'A','B','C','D','E','F','G','H','I','J','K','L','M',
-								'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-		char[] alphabet3 =new char[25];
 
-		for(int i=size-1;i>=0;i--)
-		{ alphabet3[i]=alphabet2[size-1-i];
+            char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+            char[] alphabet2 = {'A','B','C','D','E','F','G','H','I','J','K','L','M',
+                                    'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+            char[] alphabet3 =new char[25];
 
-			//Initialise the board
-		}
-		String[][] board= new String[size][size];
+            for(int i=size-1;i>=0;i--)
+                { 
+                    alphabet3[i]=alphabet2[size-1-i];
+                }
 
-		for(int i=0;i<size;i++)
-			{
-				for(int j=0;j<size;j++)
-				{
-					if((j==0||j==size-1)) //&& !(j==0||j==size-1))
-						{
-							if(i==0||i==size-1){board[i][j]=".";}
-							else if(i>0 && i<size-1){board[i][j]="W";}
-						}
-					if(!(j==0||j==size-1) && !(j==0||j==size+1))
-						{
-							if(i==0||i==size-1){board[i][j]="B";}
-							else if (i>0 && i<size-1){board[i][j]=".";}
+            String[][] board= new String[size][size];
 
-						}
-				}
-			}
+            for(int i=0;i<size;i++)
+                {
+                    for(int j=0;j<size;j++)
+                    {
+                        if((j==0||j==size-1)) //&& !(j==0||j==size-1))
+                            {
+                                if(i==0||i==size-1){board[i][j]=".";}
+                                else if(i>0 && i<size-1){board[i][j]="W";}
+                            }
+                        if(!(j==0||j==size-1) && !(j==0||j==size+1))
+                            {
+                                if(i==0||i==size-1){board[i][j]="B";}
+                                else if (i>0 && i<size-1){board[i][j]=".";}
 
+                            }
+                    }
+                }
 
 
-			String[] board2 =new String[size*size];	
+            String[] board2 =new String[size*size];	
 
-		List<String> arrayList = new ArrayList<String>();
+            List<String> arrayList = new ArrayList<String>();
 
-		for(int i=0;i<size;i++)
-			{
-				System.out.println("");
-				for(int j=0;j<size;j++)
-				{
-					//System.out.print(board[i][j]+" ");
-					arrayList.add(board[i][j]);
-				}
-			}
+            for(int i=0;i<size;i++)
+                {
+                    System.out.println("");
+                    for(int j=0;j<size;j++)
+                    {
+                        arrayList.add(board[i][j]);
+                    }
+                }
 
-		for(int i=0;i<arrayList.size();i++)
-			{
-				board2[i]=arrayList.get(i);
-			}
+            for(int i=0;i<arrayList.size();i++)
+                {
+                    board2[i]=arrayList.get(i);
+                }
 
-		System.out.println("");
+            System.out.println("");
 
 
-		String index[] =new String[size*size];
+            String index[] =new String[size*size];
 
-		StringBuilder indexstring = new StringBuilder();
-		
+            StringBuilder indexstring = new StringBuilder();
 
-		for(int k=0;k<1;k++)
-			{	
-				
-				for(int j=0;j<size;j++)
-				{
 
-					for(int i=0;i<size;i++)
-					{	indexstring.setLength(0);
-						indexstring.append(alphabet2[j]);
-						indexstring.append(alphabet2[i]);
+            for(int k=0;k<1;k++)
+                {	
 
-						index[i*size+j]=indexstring.toString();
-						
-					}
-				}
-			}
+                    for(int j=0;j<size;j++)
+                    {
 
-		String index2[] =new String[size*size];
+                        for(int i=0;i<size;i++)
+                        {	indexstring.setLength(0);
+                            indexstring.append(alphabet2[j]);
+                            indexstring.append(alphabet2[i]);
 
-		for(int n=0;n<size;n++)
-			{
-				for(int j=n*size;j<(n+1)*size;j++)
-				{
-					//System.out.println(index[3-n+(j-n*4)*4]);
-					index2[j]=index[size-1-n+(j-n*size)*size];
-				}
-			}
+                            index[i*size+j]=indexstring.toString();
 
+                        }
+                    }
+                }
 
-			
-		String[][] positions = new String[size][size];
+            String index2[] =new String[size*size];
 
+            for(int n=0;n<size;n++)
+                {
+                    for(int j=n*size;j<(n+1)*size;j++)
+                    {
+                        //System.out.println(index[3-n+(j-n*4)*4]);
+                        index2[j]=index[size-1-n+(j-n*size)*size];
+                    }
+                }
 
-		Functions.ReIndex ReIndex = new Functions.ReIndex();
-		board3=ReIndex.ReIndex(board2,size);
 
-		Functions.Board Board= new Functions.Board();
-		board4=Board.Board(board3,alphabet2,alphabet3,size);
 
+            String[][] positions = new String[size][size];
 
-	for(int i=0;i<size+1;i++)
-							
-				{
-					System.out.println("");
-				for(int j=0;j<size+1;j++)
-					{
-			System.out.print(board4[i][j]+" ");
-					}
-				}
 
+            Functions.ReIndex ReIndex = new Functions.ReIndex();
+            board3=ReIndex.ReIndex(board2,size);
 
-		board3=ReIndex.ReIndex(board2,size);
-		index3=ReIndex.ReIndex(index2,size);
+            Functions.Board Board= new Functions.Board();
+            board4=Board.Board(board3,alphabet2,alphabet3,size);
 
+            for(int i=0;i<size+1;i++)
 
-					String[] direction_of_movement = new String[8];
+                    {
+                        System.out.println("");
+                    for(int j=0;j<size+1;j++)
+                        {
+                System.out.print(board4[i][j]+" ");
+                        }
+                    }
 
-					direction_of_movement[0]="left";
-					direction_of_movement[1]="right";
-					direction_of_movement[2]="up";
-					direction_of_movement[3]="down";
-					direction_of_movement[4]="downleft";
-					direction_of_movement[5]="downright";
-					direction_of_movement[6]="upleft";
-					direction_of_movement[7]="upright";
 
-				String colour="B";
-				String player_colour="na";
+            board3=ReIndex.ReIndex(board2,size);
+            index3=ReIndex.ReIndex(index2,size);
 
-				while(!(player_colour.equals("B"))&&!(player_colour.equals("W")))
-				{
-				System.out.println("Which colour do you want to be? (B or W)");
-				player_colour= textscanner.nextLine();
-				}
-				String pccolour;
-				if(player_colour.equals("B")){pccolour="W";} else {pccolour="B";}
-			
-				
-				//String a = PossibleMoves2.PossibleMoves2(index2,board2,"W",size);
-				//System.out.println(a);	
-							//double d2 =Math.random();
+            String[] direction_of_movement = new String[8];
+            direction_of_movement[0]="left";
+            direction_of_movement[1]="right";
+            direction_of_movement[2]="up";
+            direction_of_movement[3]="down";
+            direction_of_movement[4]="downleft";
+            direction_of_movement[5]="downright";
+            direction_of_movement[6]="upleft";
+            direction_of_movement[7]="upright";
 
-		//double n2=size*d2;
-		//int row=(int)(n2);
+            String colour="B";
+            String player_colour="na";
 
-		//System.out.println(row);
+            while(!(player_colour.equals("B"))&&!(player_colour.equals("W")))
+                    {
+                        System.out.println("Which colour do you want to be? (B or W)");
+                        player_colour= textscanner.nextLine();
+                    }
 
-				//while(bunits!=size||wunits!=size){
-				//while(1>2){
+            String pccolour;
+            if(player_colour.equals("B")){pccolour="W";} else {pccolour="B";}
 
-			
+            while(bunits!=size && wunits!=size)
+                {
+                    while(player_colour.equals(colour))
+                        {
 
+                            String endposition="temp1";
+                            String requiredposition="temp2";
+                            String startingposition="temp3";
+                            String piece ="temp4";
+                            int startindex=-1;
+                            int endindex=-1;
+                            int jumps=0;
 
-				while(bunits!=size||wunits!=size){
-				while(player_colour.equals(colour)){
+                            while(!endposition.equals(requiredposition))
+                                {	
+                                        System.out.println("");
 
-					String endposition="temp1";
-					String requiredposition="temp2";
-					String startingposition="temp3";
-					String piece ="temp4";
-					int startindex=-1;
-					int endindex=-1;
-					int jumps=0;
+                                    System.out.println("Make your move, " + colour);
+                                    String move= textscanner.nextLine();
+                                    if(move.equals("QUIT")){System.exit(0);}
 
+                                    if(move.equals("PASS"))
+                                        {
+                                            if(colour.equals("B")){colour="W";} 
+                                            else {colour="B";}
+                                        }
 
+                                    startingposition=move.substring(0,2);
+                                    endposition=move.substring(2,4);
 
-							while(!endposition.equals(requiredposition)){	
-							System.out.println("");
 
+                                    Functions.Piece Piece =new Functions.Piece();
 
-							System.out.println("Make your move, " + colour);
-							String move= textscanner.nextLine();
-							if(move.equals("QUIT")){System.exit(0);}
+                                    piece =Piece.Piece(board2,index2,startingposition);
 
-							if(move.equals("PASS")){
-								if(colour.equals("B")){colour="W";} 
-								else {colour="B";}}
+                                    Functions.Index Index = new Functions.Index();
+                                    startindex = Index.Index(board2,index2,startingposition);
+                                    endindex = Index.Index(board2,index2,endposition);
 
 
-						 startingposition=move.substring(0,2);
-						 endposition=move.substring(2,4);
+                                    board3=ReIndex.ReIndex(board2,size);
+                                    index3=ReIndex.ReIndex(index2,size);
 
-						//System.out.println(startingposition);
 
-						Functions.Piece Piece =new Functions.Piece();
+                                    Functions.MovementDirection MovementDirection = new Functions.MovementDirection();
 
-						piece =Piece.Piece(board2,index2,startingposition);
+                                    direction=MovementDirection.MovementDirection(direction_of_movement,index3,startingposition,endposition,size);
+                                    jumps=NumberOfJumps.NumberOfJumps(index3,board3,startingposition,endposition,size,direction_of_movement,direction);
 
-						Functions.Index Index = new Functions.Index();
+                                    int jumps_delta =NumberOfJumps.NumberOfJumps(index3,board3,endposition,endposition,size,direction_of_movement,direction);
 
-						 startindex = Index.Index(board2,index2,startingposition);
-						 endindex = Index.Index(board2,index2,endposition);
 
+                                    Functions.SupposedNumberofJumps SupposedNumberofJumps = new Functions.SupposedNumberofJumps();
+                                    boolean correct_number_of_jumps=SupposedNumberofJumps.SupposedNumberofJumps(direction_of_movement,jumps,size,direction,index3,board3,startingposition,endposition,jumps_delta);
 
 
-						board3=ReIndex.ReIndex(board2,size);
-						index3=ReIndex.ReIndex(index2,size);
+                                    Functions.RequiredPosition RequiredPosition = new Functions.RequiredPosition();
+                                    requiredposition=RequiredPosition.RequiredPosition(index3,board3,size,direction,jumps,startingposition,endposition);
+                                    if(!endposition.equals(requiredposition)){System.out.println("ERROR:Illegal Move");}
 
 
-						Functions.MovementDirection MovementDirection = new Functions.MovementDirection();
+                                }
 
-						direction=MovementDirection.MovementDirection(direction_of_movement,index3,startingposition,endposition,size);
-						System.out.println("Direction: "+ direction);
-						//System.out.println(direction);
+                            if(board2[endindex].equals(".") && !board2[startindex].equals(".") && requiredposition.equals(endposition) && jumps!=0
+                                    && board2[startindex].equals(colour))
+                                {	
+                                        for(int i=0;i<board2.length;i++)
+                                            {
+                                                if(i==startindex){board2[i]=".";}
+                                            }				
 
-						//Functions.NumberOfJumps NumberOfJumps = new Functions.NumberOfJumps();
+                                        for(int i=0;i<board2.length;i++)
+                                            {
+                                                if(i==endindex){board2[i]=piece;}
+                                            }
+                                }
 
-						 jumps=NumberOfJumps.NumberOfJumps(index3,board3,startingposition,endposition,size,direction_of_movement,direction);
+                            else
+                                {
+                                    System.out.println("ERROR: Illegal Move");
+                                }
 
-						int jumps_delta =NumberOfJumps.NumberOfJumps(index3,board3,endposition,endposition,size,direction_of_movement,direction);
-						System.out.println("Jumps: "+jumps);
+                            board3=ReIndex.ReIndex(board2,size);
+                            index3=ReIndex.ReIndex(index2,size);
+                            board4=Board.Board(board3,alphabet2,alphabet3,size);
 
-						Functions.SupposedNumberofJumps SupposedNumberofJumps = new Functions.SupposedNumberofJumps();
-						boolean correct_number_of_jumps=SupposedNumberofJumps.SupposedNumberofJumps(direction_of_movement,jumps,size,direction,index3,board3,startingposition,endposition,jumps_delta);
+                            Functions.Units Units = new Functions.Units();
 
-						Functions.RequiredPosition RequiredPosition = new Functions.RequiredPosition();
-						 requiredposition=RequiredPosition.RequiredPosition(index3,board3,size,direction,jumps,startingposition,endposition);
-						 if(!endposition.equals(requiredposition)){System.out.println("ERROR:Illegal Move");}
-						
-						System.out.println("Required: "+ requiredposition);
-					}
+                            bunits=Units.Units("B",index3,board3,board2,size);
+                            wunits=Units.Units("W",index3,board3,board2,size);
 
-													
+                            if(bunits==size||wunits==size)
+                                {
+                                    System.out.println("WINNER:"+colour);
+                                    System.exit(0);
+                                }
 
-						if(board2[endindex].equals(".") && !board2[startindex].equals(".") && requiredposition.equals(endposition) && jumps!=0
-							&& board2[startindex].equals(colour)){	
-							for(int i=0;i<board2.length;i++){
+                            if(colour.equals("B"))
+                                {colour="W";}
+                            else {colour="B";} 								
+                        }
 
-								if(i==startindex){board2[i]=".";}
-															}				
-	//
-							for(int i=0;i<board2.length;i++){
-								if(i==endindex){board2[i]=piece;}
-								}}
+                    for(int i=0;i<size+1;i++)
+                        {
+                            System.out.println("");
+                            for(int j=0;j<size+1;j++)
+                                {
+                                  System.out.print(board4[i][j]+" ");
+                                }
+                        }
 
-							else{System.out.println("ERROR: Illegal Move");}
+                    System.out.println("");
 
-						board3=ReIndex.ReIndex(board2,size);
-						index3=ReIndex.ReIndex(index2,size);
-						board4=Board.Board(board3,alphabet2,alphabet3,size);
 
 
 
 
+                    while(colour.equals(pccolour))
 
-			
-					Functions.Units Units = new Functions.Units();
+                    {
 
-					 bunits=Units.Units("B",index3,board3,board2,size);
-					 wunits=Units.Units("W",index3,board3,board2,size);
 
-					  if(bunits==size||wunits==size){System.out.println("WINNER:"+colour);
-					  								System.exit(0);}
 
+                        Functions.PCEndBoardPositionCheck PCEndBoardPositionCheck = new Functions.PCEndBoardPositionCheck();
 
+                        int pcendindex=-1;
+                        boolean check=false;
+                        boolean check2 =false;
+                        int pcstartingindex=-1;
+                        int pcwhilecounter=0;
 
-					 if(colour.equals("B")){colour="W";} else {colour="B";} 								
-					}
+                        String pcendposition="temp1";
+                        pcrequiredposition="temp2";
 
+                        Functions.PossibleMoves2 PossibleMoves2=new Functions.PossibleMoves2();
+                        String pcstartingposition=PossibleMoves2.PossibleMoves2(index2,board2,pccolour,size);
 
-						for(int i=0;i<size+1;i++)
-									
-						{
-							System.out.println("");
-						for(int j=0;j<size+1;j++)
-							{
-						System.out.print(board4[i][j]+" ");
-							}
-						}
+                        double d=Math.random();
+                        int n =(int)(d*8);
 
-						System.out.println("");
+                        Functions.PCNumberofJumps PCNumberofJumps = new Functions.PCNumberofJumps();
 
+                        int[] pcjumps_array=PCNumberofJumps.PCNumberofJumps(index3,board3,pcstartingposition,"na" ,size,direction_of_movement,"na");
 
 
-					//}
-				
-					
+                        int pcjumps=0;
+                        String pcdirection="Undetermined";
+                        int correct_index=-1;
 
-				//String pccolour;
-				
-				while(colour.equals(pccolour)){
-				//System.out.println("PC's turn");
+                        for(int i=0;i<8;i++)
+                            {
+                                pcjumps=pcjumps_array[i];
+                                pcdirection=direction_of_movement[i];
 
 
-				
-				Functions.PCEndBoardPositionCheck PCEndBoardPositionCheck = new Functions.PCEndBoardPositionCheck();
 
-				int pcendindex=-1;
-				boolean check=false;
-				boolean check2 =false;
-				int pcstartingindex=-1;
-				int pcwhilecounter=0;
+                                Functions.PCRequiredPosition PCRequiredPosition =new Functions.PCRequiredPosition();
+                                pcrequiredposition=PCRequiredPosition.PCRequiredPosition(index3,board3,size,pcdirection,pcjumps,pcstartingposition);
 
-				String pcendposition="temp1";
-					 pcrequiredposition="temp2";
-			
-					Functions.PossibleMoves2 PossibleMoves2=new Functions.PossibleMoves2();
-					String pcstartingposition=PossibleMoves2.PossibleMoves2(index2,board2,pccolour,size);
+                                if(board2[Index.Index(board2,index2,pcrequiredposition)].equals(".")){correct_index=i; break;}
 
-					double d=Math.random();
-					int n =(int)(d*8);
+                            }   
 
-					Functions.PCNumberofJumps PCNumberofJumps = new Functions.PCNumberofJumps();
 
-					int[] pcjumps_array=PCNumberofJumps.PCNumberofJumps(index3,board3,pcstartingposition,"na" ,size,direction_of_movement,"na");
+                        if(board2[Index.Index(board2,index2,pcrequiredposition)].equals("."))
+                            {
+                                board2[Index.Index(board2,index2,pcstartingposition)]=".";
+                                board2[Index.Index(board2,index2,pcrequiredposition)]=pccolour;
+                            }
 
-					
-					//int max = pcjumps_array[0];
-					//int max_index=0;
-					//for (int i =0; i < pcjumps_array.length; i++)
-					//	{
-     					//	if (pcjumps_array[i] >= max)
-    					//		{				
-      					//	max = pcjumps_array[i];
-      					//	max_index=i;
+                        board3=ReIndex.ReIndex(board2,size);
+                        index3=ReIndex.ReIndex(index2,size);
 
-     						//	}
+                        board4=Board.Board(board3,alphabet2,alphabet3,size);
 
-						//}
-						int pcjumps=0;
-						String pcdirection="Undetermined";
-						int correct_index=-1;
 
-					for(int i=0;i<8;i++){
+                        Functions.Units Units = new Functions.Units();
 
-					pcjumps=pcjumps_array[i];
-					pcdirection=direction_of_movement[i];
+                         bunits=Units.Units("B",index3,board3,board2,size);
+                         wunits=Units.Units("W",index3,board3,board2,size);
+                        
+                        System.out.println("B Units`: "+bunits + "WUnits: "+wunits);
 
-					System.out.println(pcjumps);
-					System.out.print("Start " +pcstartingposition );
-					
-					System.out.print("Direction " +pcdirection );
+//                        if(bunits==size||wunits==size)
+//                            {
+//                                if(bunits==size && wunits==size)
+//                                {
+//                                System.out.println("Draw");
+//                                System.exit(0);
+//                                }
+//                            
+//                                else 
+//                                {
+//                                System.out.println("WINNER:"+colour);
+//                                System.exit(0);
+//                                }
+//                            }
+//
 
-					Functions.PCRequiredPosition PCRequiredPosition =new Functions.PCRequiredPosition();
-					pcrequiredposition=PCRequiredPosition.PCRequiredPosition(index3,board3,size,pcdirection,pcjumps,pcstartingposition);
-					System.out.print("End " +pcrequiredposition );
+                        if(colour.equals("B"))
+                            {
+                                colour="W";
+                            }
+                        else 
+                            {
+                                colour="B";
+                            }
 
-					if(board2[Index.Index(board2,index2,pcrequiredposition)].equals(".")){correct_index=i; break;}
+                        }
 
-				}
 
-					
-					if(board2[Index.Index(board2,index2,pcrequiredposition)].equals(".")){
-					board2[Index.Index(board2,index2,pcstartingposition)]=".";
-					board2[Index.Index(board2,index2,pcrequiredposition)]=pccolour;}
+                    System.out.print("PC has moved");
 
-						board3=ReIndex.ReIndex(board2,size);
-						index3=ReIndex.ReIndex(index2,size);
+                    System.out.print("");
 
-						board4=Board.Board(board3,alphabet2,alphabet3,size);
 
+                    for(int i=0;i<size+1;i++)
+                        {
+                            System.out.println("");
+                            for(int j=0;j<size+1;j++)
+                                {
+                                  System.out.print(board4[i][j]+" ");
+                                }
+                        }
 
-					Functions.Units Units = new Functions.Units();
+                    System.out.println("");
+                }
+        }				
 
-					 bunits=Units.Units("B",index3,board3,board2,size);
-					 wunits=Units.Units("W",index3,board3,board2,size);
-					 //System.out.print("pcbunits: " + bunits +" pcwunits: "+wunits);
-
-					 //System.out.println();
-					  if(bunits==size||wunits==size){System.out.println("WINNER:"+colour);
-					  								System.exit(0);}
-
-					  
-
-					
-
-					
-					
-
-					
-
-
-						if(colour.equals("B")){colour="W";} else {colour="B";}
-
-					}
-
-
-										System.out.print("PC has moved");
-
-					System.out.print("");
-
-
-											for(int i=0;i<size+1;i++)
-									
-						{
-							System.out.println("");
-						for(int j=0;j<size+1;j++)
-							{
-						System.out.print(board4[i][j]+" ");
-							}
-						}
-
-						System.out.println("");
-				}
-
-
-
-
-
-
-
-				//System.out.println("WINNER:"+colour);
-					
-		}				
-
-
-	 	
-	  
-	 }
+    }

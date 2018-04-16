@@ -62,7 +62,7 @@ public static int NumberOfJumps(String[][] index3,String[][] board3,
 				if(board3[startrowindex][j]!="."){leftdirectioncount+=1;}
 			}
 
-			for(int i=startrowindex+1;i<size;i++)
+			for(int i=startrowindex;i<size;i++)
 			{
 				if((board3[i][startcolumnindex]!=".") && index3[i][startcolumnindex]!=startingposition){downdirectioncount+=1;}
 			}
@@ -99,7 +99,7 @@ public static int NumberOfJumps(String[][] index3,String[][] board3,
 
 					}
 
-			for(int i=startrowindex-1,j=startcolumnindex;i>=0;i--)
+			for(int i=startrowindex,j=startcolumnindex;i>=0;i--)
 			
 					
 					{

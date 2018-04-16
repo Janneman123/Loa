@@ -99,7 +99,7 @@ public static int NumberOfJumps(String[][] index3,String[][] board3,
 
 					}
 
-			for(int i=startrowindex-1,j=startcolumnindex;i>=0;i--)
+			for(int i=startrowindex,j=startcolumnindex;i>=0;i--)
 			
 					
 					{

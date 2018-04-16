@@ -57,6 +57,16 @@ public static String RequiredPosition(String[][] index3,String[][] board3,int si
 			if(startcolumnindex>=1){startcolumnindex-=1;}
 			requiredposition=index3[startrowindex-jumps][startcolumnindex+jumps];
 		}
+    
+        if(direction.equals("upleft"))
+
+		{
+			//increment=Math.pow(((Math.pow(jumps,2))/2),0.5);
+			//if(startrowindex!=size-1){startrowindex+=1;}
+			//if(startrowindex>=1){startrowindex-=1;}
+			//if(startcolumnindex>=1){startcolumnindex-=1;}
+			requiredposition=index3[startrowindex-jumps][startcolumnindex-jumps+1];
+		}
 
 				if(direction.equals("downright"))
 
